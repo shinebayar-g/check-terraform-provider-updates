@@ -1,0 +1,66 @@
+{
+  "name": "check-terraform-updates",
+  "version": "0.0.1",
+  "author": {
+    "name": "shinebayar-g",
+    "url": "https://github.com/shinebayar-g"
+  },
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/shinebayar-g/check-terraform-updates",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shinebayar-g/check-terraform-updates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shinebayar-g/check-terraform-updates/issues"
+  },
+  "keywords": [
+    "terraform",
+    "provider",
+    "module",
+    "modules",
+    "check",
+    "updates"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=20.18"
+  },
+  "packageManager": "pnpm@9.15.1",
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "bin": {
+    "check-terraform-updates": "./dist/index.js"
+  },
+  "scripts": {
+    "lint": "biome lint",
+    "add_shebang": "perl -i -pe 's,#!/usr/bin/env tsx,#!/usr/bin/env node,g' dist/index.js",
+    "build": "rm -rf dist && tsc && pnpm run add_shebang && chmod +x dist/index.js",
+    "prepack": "pnpm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "22.10.2",
+    "typescript": "5.7.2"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1"
+  }
+}
